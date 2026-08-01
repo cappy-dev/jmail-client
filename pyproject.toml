@@ -50,5 +50,3 @@ jmail = "jmail.cli:main"
 [tool.setuptools]
 packages = ["jmail"]
 
-[tool.uv]
-requires-build-dependencies = ["setuptools.backends"]
