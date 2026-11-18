@@ -160,6 +160,7 @@ class JmailClient:
         resp.raise_for_status()
 
         # Save downloaded file
+        file_path.parent.mkdir(parents=True, exist_ok=True)
         with open(file_path, "wb") as f:
             for chunk in resp.iter_content(chunk_size=1_048_576):
                 if chunk:
