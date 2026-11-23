@@ -156,6 +156,11 @@ class JmailClient:
         if resp.status_code == 304 and file_path.exists():
             # Cache is still fresh
             return file_path
+        if resp.status_code == 304:
+            # Conditional request said "not modified" but the cached copy
+            # is gone, so fetch the full body again.
+            resp.close()
+            resp = requests.get(url, headers={}, timeout=300, stream=True)
 
         resp.raise_for_status()
 
